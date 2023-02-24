@@ -12,7 +12,8 @@ int main(void) {
 		cin >> x;
 		arr.push_back(x); // 0번 요소 값을 생성하고 x로 초기화
 	}
-	sort(arr.begin(), arr.end());
+	sort(arr.begin(), arr.end()); // 오름차순 정렬
+//내림차순 정렬 : sort(arr.begin(), arr.end(), greater<int>());
 
 	int result = 0; // 총 그룹의 수
 	int cnt = 0; // 현재 그룹에 포함된 모험가의 수
