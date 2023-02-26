@@ -7,7 +7,7 @@ vector<int> arr; // 배열 -> c++에서는 vertor라이브러리 사용 , python
 // 비어있는 벡터 arr 생성
 int main(void) {
 	cin >> N;
-	for (int i = 0; i < N; i++) {
+	for (int i = 0; i < N; i++) {//n명 공포도 값 입력
 		int x;
 		cin >> x;
 		arr.push_back(x); // 0번 요소 값을 생성하고 x로 초기화
