@@ -14,7 +14,7 @@ int main(void) {
 		cin >> p; // 각 사람이 돈을 인출하는데 걸리는 시간
 		arr.push_back(p); // 각 요소 값 생성하고 p로 초기화
 	}
-	sort(arr.begin(), arr.end());//오름차순 정렬
+	sort(arr.begin(), arr.end());//오름차순 정렬 함수
 	for (int i = 0; i < n; i++) { 
 		sum += arr[i]; 
 		result += sum;
