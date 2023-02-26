@@ -1,4 +1,4 @@
-https://www.acmicpc.net/problem/1541
+// https://www.acmicpc.net/problem/1541
 
 #include <bits/stdc++.h>
 using namespace std;
