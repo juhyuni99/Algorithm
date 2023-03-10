@@ -9,7 +9,7 @@ int sum = 0; // 최소 동전의 개수
 int main() {
 	cin >> r_money; // 거스름 돈 입력
 	
-	if (r_money ==1 || r_money == 3) {
+	if (r_money ==1 || r_money == 3) { // 1원과 3원은 계산 불가
 		cout << -1;
 		return 0;
 	}
