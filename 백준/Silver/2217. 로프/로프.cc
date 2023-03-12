@@ -7,7 +7,7 @@ int W_max; // 최대 중량
 int main() {
 
 	cin >> n;
-	vector <int> rope_W(n);
+	vector <int> rope_W(n); //로프 중량
 	for (int i = 0; i < n; i++) {
 		cin >> rope_W[i];
 	}
