@@ -13,7 +13,7 @@ int main() {
 	}
 	sort(rope_W.begin(),rope_W.end()); // 로프의 중량 정렬
 	for (int i = 0; i < rope_W.size(); i++) {
-		W_max = max(W_max, rope_W[n - i - 1] * (i + 1));
+		W_max = max(W_max, rope_W[n - i - 1] * (i + 1)); //최대인 중량들을 선택하면서 중량을 계산
 	}
 	cout << W_max;
 }
