@@ -15,7 +15,7 @@ int main(void) {
 
 	//c++과 java에서는 정수 입력받은 뒤에 문자열을 입력받으면 꼭 버퍼 비워주기!!!
 	cin >> n;
-	cin.ignore();//버퍼 비우기
+	cin.ignore();//버퍼에 있는 null문자 없애주기
 	getline(cin, plans); //문자열 입력 받기
 
 	//이동 계획을 하나씩 확인하기
