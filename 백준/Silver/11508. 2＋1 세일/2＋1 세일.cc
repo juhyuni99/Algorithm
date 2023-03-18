@@ -17,7 +17,7 @@ int main(void) {
 	sort(arr.begin(), arr.end(), greater<int>());//내림차순
 
 	for (int i = 0; i < arr.size(); i++) {
-		// 3개씩 묵은것중 가장 작은 값 -> 즉 3의 배수이면 계산안하기
+		// 3개씩 묶은것중 가장 작은 값 -> 즉 3의 배수이면 계산안하기
 		if ((i + 1) % 3 == 0) continue;
 		result += arr[i];
 	}
