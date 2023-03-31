@@ -25,7 +25,7 @@ bool dfs(int x, int y) {
 	}
 	return false;
 
-	}
+}
 int main(){
 	//N, M을 공백을 기준으로 구분하여 입력 받기
 	cin >> n >> m;
