@@ -11,7 +11,7 @@ int dy[] = {0, 0, -1, 1};
 
 int bfs(int x, int y) {
     // 큐(Queue) 구현을 위해 queue 라이브러리 사용 
-    queue<pair<int, int> > q;
+    queue<pair<int, int> > q; //pair 객체를 이용함으로써 별도의 구조체나 클래스를 사용하지 않아도 됨
     q.push({x, y});
     // 큐가 빌 때까지 반복하기 
     while(!q.empty()) {
