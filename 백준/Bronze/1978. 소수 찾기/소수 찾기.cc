@@ -9,9 +9,7 @@ int main() {
     vector<int> number(N);
 
     for (int i = 0; i < N; i++) {
-        int input;
-        cin >> input;
-        number[i] = input;
+        cin >> number[i];
         if (number[i] == 1) continue;
         bool is_prime = true;
         for (int j = 2; j * j <= number[i]; j++) {
@@ -27,5 +25,3 @@ int main() {
     cout << cnt;
     return 0;
 }
-
-
