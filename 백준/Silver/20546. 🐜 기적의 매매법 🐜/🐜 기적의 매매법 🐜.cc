@@ -18,7 +18,7 @@ int main(void) {
 	cost1 = cost;
 	cost2 = cost;
 	vector<int> juga(cost); // 주가
-	bool flag = false;
+
 	for (int i = 0; i < 14; i++) {
 		cin >> juga[i];
 		if (juga[i] <= cost1) { //준현
