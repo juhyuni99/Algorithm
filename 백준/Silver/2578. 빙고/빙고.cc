@@ -11,7 +11,7 @@ bool check(){
 	int crossR = 0; //대각선 빙고 좌->우
 	int crossL = 0; // 대각선 빙고 우->좌
 
-	for (int i = 0; i < 5; i++) { // 빙고판과 사회자가 부른 수 동일 여부 확인
+	for (int i = 0; i < 5; i++) { //빙고판에서 0 확인하며 빙고여부 확인
 		int col = 0;
 		int row = 0;
 		for (int j = 0; j < 5; j++) {
@@ -68,9 +68,9 @@ int main() {
 			int number; //사회자가 부른 수
 			cin >> number;
 			bingo[num[number].first][num[number].second] = 0; // 사회자가 부른 수를 빙고판에서 찾고 값을 0으로 바꿔주기
-			if (i > 1) {
+			if (i >= 2) { // 11개 이상 불렀을때 검사
 				if (check()) {
-					cout << ans;
+					cout << ans; //3줄 이상 그어졌을때의 회수 출력 
 					return 0;
 				}
 			}
