@@ -1,8 +1,6 @@
 #include <iostream>
 #include <algorithm>
-#include <vector>
-#include <map>
-#include <string>
+
 using namespace std;
 
 char arr[397][397]; // n의 최댓값 4n-3 = 4*100-3 = 397
