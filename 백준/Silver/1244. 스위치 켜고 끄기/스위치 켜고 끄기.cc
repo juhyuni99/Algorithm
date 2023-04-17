@@ -6,7 +6,7 @@ using namespace std;
 int arr[101];
 int N;
 
-void ifGirl(int n) {
+void ifGirl(int n) { //여자
 	int left = n - 1;
 	int right = n + 1;
 	arr[n] = !arr[n];
@@ -21,7 +21,7 @@ void ifGirl(int n) {
 	}
 }
 
-void ifBoy(int n) {
+void ifBoy(int n) { //남자
 	for (int i = n; i <= N; i += n) {
 		arr[i] = !arr[i];
 	}
