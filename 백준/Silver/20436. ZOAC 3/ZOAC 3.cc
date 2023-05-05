@@ -33,10 +33,10 @@ int arr[26][2] = {
 	{2,0}, //z
 };
 
-//초기화된 왼쪽 손으로 눌러지는 키들의 집합
+
 //set 자료구조 : 이진 검색 트리, 중복 허용x, 원소들을 삽입한 순서대로 저장
 set<int> lft;
-
+//초기화된 왼쪽 손(자음)으로 눌러지는 키들의 집합
 void init(void) {
 	lft.insert('q' - 'a'); //숫자로 변경된 값 원소에 저장
 	lft.insert('w' - 'a');
@@ -62,12 +62,14 @@ int main(void) {
 	string str;
 	cin >> str;
 
-	int res = 0; // 걸리는 시간의 최솟값
+	int res = 0; // 현재 위치에서 현재 입력해야 하는 문자까지 이동하는 데 걸리는 최소 이동거리
 	//문자열의 모든 문자에 대해서 반복적으로 작업을 수행하는 루프 코드
 	for (auto& i : str) {
+		//lft set에 i - 'a' 값이 있다면 해당 값의 반복자(iterator)를 반환,
+		// 그렇지 않은 경우에는 lft.end()를 반환
 		if (lft.find(i - 'a') != lft.end()) { //set에 속한 문자임을 확인
 			res += (abs(arr[l - 'a'][0] - arr[i - 'a'][0]) + abs(arr[l - 'a'][1] - arr[i - 'a'][1]));
-			res += 1;
+			res += 1; // 이동시간 1초 더해주기
 			l = i;
 		}
 		else {
