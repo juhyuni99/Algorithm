@@ -19,6 +19,6 @@ Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday
  
 
 예제 입력
-copy3 10
+3 10
 예제 출력
-copyWednesday
+Wednesday
