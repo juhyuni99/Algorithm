@@ -19,6 +19,6 @@ Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday
  
 
 예제 입력
-3 10
+<p> 3 10 </p>
 예제 출력
-Wednesday
+<p> Wednesday </p>
