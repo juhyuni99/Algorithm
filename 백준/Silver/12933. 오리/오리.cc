@@ -1,42 +1,73 @@
 #include <iostream>
 #include <string>
-#include <algorithm>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
-int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(0);
+string str;
+string target = "quack";
+int res;
 
-    string s; //녹음된 울음소리
-    cin >> s;
+bool get_count()
+{
+	vector<int> duck;
+	int s, e, i;
+	int idx = 0;
 
-    const string DB = "quack";
-    int n = s.size();
-    vector<int> used(n), cnt(n);
-    bool result = true;
+	// 녹음한 소리 전체를 확인
+	while (idx < str.size())
+	{
+		// 소리가 어디부터 시작하는지 찾기
+		s = find(target.begin(), target.end(), str[idx]) - target.begin();
+		e = s;
+		// 이어지는 소리의 최대 길이 구하기
+		while (idx < str.size() && e < target.size() && str[idx] == target[e])
+		{
+			idx++;
+			e++;
+		}
+		// 소리의 처음부터 시작하는 경우
+		if (s == 0)
+		{
+			// 새로운 오리이므로 duck에 추가 후 존재하는 오리의 수 갱신
+			duck.push_back(e);
+			res = max(res, (int)duck.size());
+			// 소리가 끝났다면 duck에서 삭제
+			if (e - s == target.size())
+				duck.pop_back();
+			continue;
+		}
+		// 소리의 중간부터 시작하는 경우 
+		// 앞 부분의 소리가 duck에 존재하는지 확인
+		i = find(duck.begin(), duck.end(), s) - duck.begin();
+		// 존재하지 않으면 올바르지 않음 -> false를 리턴
+		if (i == duck.size())
+		{
+			return false;
+		}
+		// 존재하면 누적된 소리의 길이를 갱신
+		duck[i] = e;
+		// 소리가 끝났다면 duck에서 삭제
+		if (e == target.size())
+		{
+			duck.erase(duck.begin() + i);
+		}
+	}
+	// 끝나지 않고 남은 소리가 있다면 올바르지 않음 -> false 리턴
+	if (!duck.empty())
+		return false;
+	return true;
+}
 
-    for (int i = 0; i < n; i++) {
-        if (s[i] != 'q')continue;
-        int R = i, idx = 0;
-        while (idx < 5 && R < n) {
-            if (used[R] == 0 && s[R] == DB[idx]) {
-                used[R] = 1;
-                idx++;
-            }
-            R++;
-        }
-        if (idx != 5) result = false;
-        for (int j = i; j < R; j++) cnt[j]++;
-    }
-    int ans = 0;
-    for (int i = 0; i < n; i++) {
-        ans = max(ans, cnt[i]);
-        if (cnt[i] == 0)result = false;
-    }
-
-    if (result) cout << ans;
-    else cout << -1;
-    return 0;
+int main()
+{
+	cin >> str;
+	// 녹음한 소리가 올바른 경우
+	if (get_count())
+		cout << res << endl;
+	// 녹음한 소리가 올바르지 않은 경우
+	else
+		cout << -1 << endl;
+	return 0;
 }
