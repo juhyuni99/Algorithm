@@ -1,56 +1,51 @@
 #include <iostream>
-#include<stack>
-#include<string>
+#include <stack>
+#include <string>
 using namespace std;
 
-void Print(stack <char>& s) { // 스택에서 문자열 뒤집어 꺼내기
-	while (!s.empty()) {
+// 문자열 뒤집어 꺼내기
+void reverse(stack<char>& s) {
+	while (!s.empty()) {// 스택 빌때까지
 		cout << s.top();
 		s.pop();
 	}
 }
 
-int main() {
+int main(void) {
 	string str;
 	getline(cin, str);
 
-	bool tag = false;
-
+	bool tag = false; // <> 내부 글자인지 확인
 	stack <char> s;
 
 	for (char ch : str) {
-		if (ch == '<')
-		{
-			Print(s);
+		if (ch == '<') {
+			//< c>tag<rule>
+			reverse(s);
 			tag = true;
 			cout << ch;
 		}
-		else if (ch == '>')
-		{
+		else if (ch == '>') {
 			tag = false;
 			cout << ch;
 		}
-		else if (tag) // < > 내부의 글자라면
-		{
+		else if (tag) { // 괄호 내부 글자
 			cout << ch;
 		}
-		else // < > 내부의 글자가 아니라면
-		{
-			if (ch == ' ')
-			{
-				Print(s);
+		else { // 괄호 외부 글자
+			if (ch == ' ') {
+				////tag tag
+				reverse(s);
 				cout << ch;
 			}
-			else
-			{
+			else {
 				s.push(ch);
 			}
 		}
 	}
-
-	// 이 문자열에는 마지막에 공백이 없으므로, 남은 문자열을 스택에서 꺼내줘야함
-	Print(s);
+	//마지막에 공백이 없으므로, 남은 문자열을 스택에서 꺼내주기
+	//tag tag
+	reverse(s);
 	cout << '\n';
-
 	return 0;
 }
