@@ -34,6 +34,7 @@ int main() {
 		}
 	}
 	
+	//결과
 	for (int i = 0; i < MAX; i++) {
 		for (int j = 0; j < MAX; j++) {
 			if (graph[j][i] != '0') {
