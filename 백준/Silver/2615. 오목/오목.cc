@@ -4,8 +4,9 @@ using namespace std;
 
 char graph[MAX][MAX];
 int moving[4][2] = { {0,1},{1,0},{1,1},{-1,1} };
-bool visited[MAX][MAX][4][2];
+bool visited[MAX][MAX][4][2]; // 방문 확인 
 
+//DFS 함수
 char dfs(int r, int c, int dir, char color, int cnt) {
 	visited[r][c][dir][color - '1'] = true;
 	int nR = r + moving[dir][0];
