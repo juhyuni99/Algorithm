@@ -16,7 +16,7 @@ int main(void) {
 			B = B / 10;
 		else  // 이외에 수는 while문 빠져나감
 			break; 
-		cnt++;
+		cnt++; //카운드 세기
 	}
 	if (B == A) // 값이 같으면 cnt값에 +1 하여 출력
 		cout << cnt + 1;
