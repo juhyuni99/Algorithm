@@ -1,54 +1,63 @@
 #include <iostream>
-#define MAX 19
+#define MAX 21
 using namespace std;
 
-char graph[MAX][MAX];
-int moving[4][2] = { {0,1},{1,0},{1,1},{-1,1} };
-bool visited[MAX][MAX][4][2]; // 방문 확인 
+bool ch[MAX][MAX] = {false,};
+int arr[MAX][MAX], ny, nx, my[]={-1,0,1,1}, mx[]={1,1,1,0};
 
-//DFS 함수
-char dfs(int r, int c, int dir, char color, int cnt) {
-	visited[r][c][dir][color - '1'] = true;
-	int nR = r + moving[dir][0];
-	int nC = c + moving[dir][1];
-	if (nR < 0 || nR >= MAX || nC < 0 || nC >= MAX || graph[nR][nC] != color) {
-		if (cnt == 5) {
-			return color;
-		}
-		else {
-			return '0';
-		}
-	}
-	return dfs(nR, nC, dir, color, cnt + 1);
-	
+void bf(int y, int x, int st_y, int st_x, int num, int dir){
+    ch[y][x] = true;
+    for(int i=0; i<4; i++){
+        ny = y+my[i];
+        nx = x+mx[i];
+        if(ny>=1&&ny<=19&&nx>=1&&nx<=19&&!ch[ny][nx]&&arr[y][x]==arr[ny][nx]){
+            if(y==ny){ // 가로
+                if(dir==1) bf(ny,nx,st_y,st_x,num+1,dir);
+                else bf(ny,nx,y,x,2,1);
+            }
+            else if(x==nx){ // 세로
+                if(dir==2) bf(ny,nx,st_y,st_x,num+1,dir);
+                else bf(ny,nx,y,x,2,2);
+            }
+            else if(y-ny==1&&nx-x==1){ // 위 대각선
+                if(dir==3) bf(ny,nx,st_y,st_x,num+1,dir);
+                else bf(ny,nx,y,x,2,3);
+            }
+            else{ //아래 대각선
+                if(dir==4) bf(ny,nx,st_y,st_x,num+1,dir);
+                else bf(ny,nx,y,x,2,4);
+            }
+        }
+    }
+    ch[y][x] = false;
+    if(num==5){
+        if(dir==1){
+            if((x>5&&arr[y][x]==arr[y][x-5])||(x<19&&arr[y][x]==arr[y][x+1])) return;
+        }
+        else if(dir==2){
+            if((y>5&&arr[y][x]==arr[y-5][x])||(y<19&&arr[y][x]==arr[y+1][x])) return;
+        }
+        else if(dir==3){
+            if((y<15&&x>5&&arr[y][x]==arr[y+5][x-5])||(y>1&&x<19&&arr[y][x]==arr[y-1][x+1])) return;
+        }
+        else if(dir==4){
+            if((y>5&&x>5&&arr[y][x]==arr[y-5][x-5])||(y<19&&x<19&&arr[y][x]==arr[y+1][x+1])) return;
+        }
+        cout << arr[y][x] << "\n" << st_y << " " << st_x << "\n";
+        exit(0);
+    }
 }
 
 int main() {
-	ios::sync_with_stdio(false);
-	cin.tie(0);
-	cout.tie(0);
-
-	for (int i = 0; i < MAX; i++) {
-		for(int j=0; j<MAX;j++){
-			cin>>graph[i][j];
-		}
-	}
-	
-	//결과
-	for (int i = 0; i < MAX; i++) {
-		for (int j = 0; j < MAX; j++) {
-			if (graph[j][i] != '0') {
-				for (int dir = 0; dir < 4; dir++) {
-					if (visited[j][i][dir][graph[j][i] - '1'])continue;
-					if (dfs(j, i, dir, graph[j][i], 1) != '0') {
-						cout << graph[j][i] << '\n' << j + 1 << ' ' << i + 1;
-						return 0;
-					}
-				}
-			}
-		}
-	}
-		
-	cout << 0;
-	return 0;
+    ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
+    for(int i=1; i<=19; i++){
+        for(int j=1; j<=19; j++) cin >> arr[i][j];
+    }
+    for(int i=1; i<=19; i++){
+        for(int j=1; j<=19; j++){
+            if((arr[i][j]==1||arr[i][j]==2)&&!ch[i][j])bf(i,j,i,j,1,0);
+        }
+    }
+    cout << 0 << "\n";
+    return 0;
 }
