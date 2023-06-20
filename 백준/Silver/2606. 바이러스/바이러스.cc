@@ -24,7 +24,7 @@ int main(){
         map[x][y] = map[y][x] = 1;
     }
  
-    dfs(1);
+    dfs(1); //함수 호출
     printf("%d\n", ans - 1);
  
  
