@@ -11,7 +11,7 @@ void dfs(int n){
     visit[n] = 1;
     for (int i=1; i<=computer_num; i++){
         if (map[n][i] && !visit[i])        
-            dfs(i);
+            dfs(i); //재귀 호출
     }
 }
  
