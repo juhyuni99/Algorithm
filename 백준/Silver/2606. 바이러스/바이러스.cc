@@ -4,7 +4,8 @@
 int map[101][101] = {0};
 int visit[101] = {0};
 int computer_num, ans = 0;
- 
+
+//깊이 우선 탐색
 void dfs(int n){
     ans++;
     visit[n] = 1;
