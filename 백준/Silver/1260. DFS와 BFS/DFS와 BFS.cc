@@ -4,8 +4,8 @@
 #include<queue>
 
 using namespace std;
-bool visited1[10001];
-bool visited2[10001];
+bool visited1[10001];//dfs 방문 check
+bool visited2[10001];//bfs 방문 check
 vector<int> graph[10001];
 
 //dfs 함수
@@ -27,10 +27,13 @@ void bfs(int start) {
 	q.push(start);
 	//현재 노드를 방문 처리
 	visited2[start] = true;
+	//큐가 빌 때까지 반복
 	while (!q.empty()) {
+		//큐에서 하나의 원소를 뽑아 출력
 		int x = q.front();
 		q.pop();
 		cout << x << ' ';
+		//해당 원소와 연결된, 아직 방문하지 않은 원소들을 큐에 삽입
 		for (int i = 0; i < graph[x].size(); i++) {
 			int y = graph[x][i];
 			if (!visited2[y]) {
