@@ -1,31 +1,33 @@
-#include <stdio.h>
-#include <stdlib.h>
- 
-int map[101][101] = {0};
-int visit[101] = {0};
-int computer_num, ans = 0;
+#include <iostream>
+#include <vector>
+#include <algorithm>
 
-//깊이 우선 탐색
-void dfs(int n){
-    ans++;
-    visit[n] = 1;
-    for (int i=1; i<=computer_num; i++){
-        if (map[n][i] && !visit[i])        
-            dfs(i); //재귀 호출
-    }
+using namespace std;
+bool visited[101];
+vector<int> graph[101];
+int num;
+
+void dfs(int x) {
+	visited[x] = true;
+	for (int i = 0; i < graph[x].size(); i++) {
+		int y = graph[x][i];
+		if (!visited[y]) {
+			dfs(y);
+			num++;
+		}
+	}
 }
- 
-int main(){
-    int n;
-    int x, y;
-    scanf("%d %d", &computer_num, &n);
-    for (int i=0; i<n; i++){
-        scanf("%d %d", &x, &y);
-        map[x][y] = map[y][x] = 1;
-    }
- 
-    dfs(1); //함수 호출
-    printf("%d\n", ans - 1);
- 
- 
+int main(void) {
+	ios_base::sync_with_stdio(false);
+	cin.tie(0);
+	int com, path;
+	cin >> com >> path;
+	for (int i = 0; i < path; i++) {
+		int a,b;
+		cin >> a >> b;
+		graph[a].push_back(b);
+		graph[b].push_back(a);
+	}
+	dfs(1);
+	cout << num;
 }
