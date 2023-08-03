@@ -1,64 +1,63 @@
-#include <iostream>
-#include <queue>
-#include <vector>
-#include <cstring>
+#include<iostream>
+#include<queue>
+#include<vector>
+#include<algorithm>
+
 using namespace std;
-vector<int> graph[10001];
-bool visited[10001];
-int n,m,cnt;
-struct cmp {
-	bool operator()(pair<int, int> a, pair<int, int> b) {
-		if (a.first == b.first)
-			return a.second > b.second;
-		return a.first < b.first;
-	}
-};
+vector<int> graph[10001]; //그래프
+bool visit[10001];//방문 표시
+vector<pair<int, int>> v; //컴퓨터 번호, 해킹 가능한 컴퓨터 수
+int hacked = 1;//해킹 가능한 컴퓨터 수
 
-
-void dfs(int start) {
-
-	cnt++;
-	visited[start] = true;
-	for (int i = 0; i < graph[start].size(); i++) {
-
-		if (!visited[graph[start][i]]) {
-			
-			dfs(graph[start][i]);
+//bfs 탐색
+void bfs(int v) {
+	queue<int> q;
+	visit[v] = true;
+	q.push(v);
+	while (!empty(q)) { //큐가 비어있지 않을 때까지 반복
+		int parent = q.front();
+		q.pop();
+		for (int i = 0; i < graph[parent].size(); i++) { //자식노드 검사
+			int child = graph[parent][i];
+			if (!visit[child]) {//방문하지 않았으면
+				visit[child] = true;
+				q.push(child);
+				hacked++;
+			}
 		}
-
 	}
-
 }
 
 int main() {
-	ios::sync_with_stdio(false);
-	cin.tie(0);
-	cout.tie(0);
-	cin >> n >> m;
-	priority_queue<pair<int, int>, vector<pair<int, int>>, cmp> pq;
-
-	for (int i = 0; i < m; i++) {
-		int to, from;
-		cin >> to >> from;
-		graph[from].push_back(to);
+	int N, M;
+	cin >> N >> M;
+	for (int i = 0; i < M; i++) {
+		int a, b;
+		cin >> a >> b;
+		graph[b].push_back(a);
 	}
-	for (int i = 1; i <= n; i++) {
-		dfs(i);
-		pq.push({ cnt,i });
-		//cout << i << ' ' << cnt << '\n';
-		cnt = 0;
-		memset(visited, false, sizeof(visited));
+	for (int i = 1; i <= N; i++) {
+		bfs(i);
+		for (int j = 0; j <= N; j++) {
+			visit[j] = 0;
+		}
+		v.push_back(make_pair(i, hacked));
+		hacked = 1;
 	}
-	if (!pq.empty()) {
-		int first = pq.top().first;
-		int result = pq.top().second;
-		cout << result << ' ';
-		pq.pop();
-		while (!pq.empty()&& first==pq.top().first) {
-			cout << pq.top().second << ' ';
-			pq.pop();
+	
+	//해킹 가능한 최대 컴퓨터 수 구하기
+	int maxHack = -1;
+	for (int i = 0; i < v.size(); i++) {
+		if (v[i].second > maxHack) {
+			maxHack = v[i].second;
 		}
 	}
 
-	return 0;
+	//maxHack에 해당하는 컴퓨터 번호 모두 출력
+	for (int i = 0; i <= v.size(); i++) {
+		if (v[i].second == maxHack) {
+			cout << v[i].first << " ";
+		}
+	}
+
 }
