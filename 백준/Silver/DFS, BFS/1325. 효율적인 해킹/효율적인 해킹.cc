@@ -29,7 +29,7 @@ void bfs(int v) {
 }
 
 int main() {
-	int N, M;
+	int N, M; //컴퓨터 수, 관계
 	cin >> N >> M;
 	for (int i = 0; i < M; i++) {
 		int a, b;
@@ -38,15 +38,15 @@ int main() {
 	}
 	for (int i = 1; i <= N; i++) {
 		bfs(i);
-		for (int j = 0; j <= N; j++) {
+		for (int j = 1; j <= N; j++) {//초화
 			visit[j] = 0;
 		}
 		v.push_back(make_pair(i, hacked));
-		hacked = 1;
+		hacked = 1;//초기화
 	}
 	
 	//해킹 가능한 최대 컴퓨터 수 구하기
-	int maxHack = -1;
+	int maxHack = 0;
 	for (int i = 0; i < v.size(); i++) {
 		if (v[i].second > maxHack) {
 			maxHack = v[i].second;
@@ -54,10 +54,9 @@ int main() {
 	}
 
 	//maxHack에 해당하는 컴퓨터 번호 모두 출력
-	for (int i = 0; i <= v.size(); i++) {
+	for (int i = 0; i < v.size(); i++) {
 		if (v[i].second == maxHack) {
 			cout << v[i].first << " ";
 		}
 	}
-
 }
