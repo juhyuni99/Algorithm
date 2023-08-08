@@ -42,7 +42,7 @@ int main(void) {
 	//2차원 맵정보 입력 받기
 	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < m; j++) {
-			scanf("%1d", &graph[i][j]);
+			scanf("%1d", &graph[i][j]); //정수 한개씩 입력받기
 		}
 	}
 	// BFS를 수행한 결과 출력
