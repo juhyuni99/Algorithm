@@ -38,7 +38,7 @@ int main() {
 	}
 	for (int i = 1; i <= N; i++) {
 		bfs(i);
-		for (int j = 1; j <= N; j++) {//초화
+		for (int j = 1; j <= N; j++) {//초기화
 			visit[j] = 0;
 		}
 		v.push_back(make_pair(i, hacked));
