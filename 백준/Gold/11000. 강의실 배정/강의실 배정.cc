@@ -33,7 +33,7 @@ int main(void) {
 			pq.push(inf[i].second); // 수업 종료시간 추가
 		}
 	}
-	//int room = pq.size();
+	//int room = pq.size(); 요건 뭘까
 	cout << pq.size(); // 최소 강의실 개수 출력
 	return 0;
 }
