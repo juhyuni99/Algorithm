@@ -1,29 +1,3 @@
-/*
-
-using namespace std;
-vector<pair<int, int>> v;
-int sum;
-
-int main() {
-	int w, n;
-	cin >> w >> n;
-	for (int i = 0; i < n; i++) {
-		int a, b;
-		cin >> a >> b;
-		v.push_back({ b,a });
-	}
-	sort(v.begin(), v.end(), greater<>());
-	for (int i = 0; i < v.size(); i++) {
-		int small_weight = min(w, v[i].second);
-		sum += small_weight * v[i].first;
-		w -= small_weight;
-		if (w == 0) break;
-	}
-	cout << sum;
-	return 0;
-}
-*/
-
 #include <iostream>
 #include <string>
 #include <vector>
