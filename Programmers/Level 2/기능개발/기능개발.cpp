@@ -9,7 +9,7 @@ vector<int> solution(vector<int> progresses, vector<int> speeds) {
     int res = 0; 
     for(int i=0; i<progresses.size(); i++){
         res = 100 - progresses[i];
-        if(res/speeds[i]==0){
+        if(res%speeds[i]==0){
             q.push(res/speeds[i]);
         }
         else{
