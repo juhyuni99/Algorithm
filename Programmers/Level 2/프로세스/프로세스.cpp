@@ -24,7 +24,7 @@ int solution(vector<int> priorities, int location) {
             q.emplace(q.front());
             q.pop();
             location--;
-            if(location < 0) location = q.size() - 1;
+            if(location < 0) location = q.size() - 1; //2번째 테스트케이스 경우 location이 음수가 되버리면 q에 다시 push가 되어 q사이즈-1번째 인덱스로 변한다.
         }
     }
 }
