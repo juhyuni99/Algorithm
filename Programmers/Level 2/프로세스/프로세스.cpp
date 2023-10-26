@@ -9,7 +9,7 @@ int solution(vector<int> priorities, int location) {
     queue<int> q;
     //vector의 인자들을 변경하지 않을거기 때문에 const를 사용한것이고 
     // 복사하지 않기 위해 &를 사용
-    for(const auto& a : priorities) q.push_back(a);
+    for(const auto& a : priorities) q.emplace(a);
     sort(priorities.begin(), priorities.end(), greater<int>());
     int answer = 0;
     while(true){
