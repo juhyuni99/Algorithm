@@ -23,7 +23,7 @@ int solution(vector<int> priorities, int location) {
             answer++;
             q.pop();
             priorities.erase(priorities.begin());
-            if(location==0) return answer;                                       
+            if(location==0) return answer;//location이 0이 되었을때 answer값 반환                                      
             else location--;
         }
     }
