@@ -12,7 +12,7 @@ int solution(vector<vector<string>> clothes) {
         m[clothes[i][1]]++;
     }
     //입지않는 경우를 추가하여 모든 조합 계산하기
-    for(auto &a:m){
+    for(auto &a:m){//&가 있으면 참조-원본 데이터 수정가능, &없으면 복사본-원본 데이터 수정불가능
         answer *= a.second+1;
     }
     //아무 종류의 옷도 입지 않는 경우 제외하기
